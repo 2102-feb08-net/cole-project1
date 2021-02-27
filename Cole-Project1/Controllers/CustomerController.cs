@@ -8,10 +8,24 @@ using System.Threading.Tasks;
 
 namespace Cole_Project1
 {
-    [Route("api/[controller]")]
+    [Route("customer")]
     [ApiController]
     public class CustomerController : ControllerBase
     {
-        Customer customer = new Customer();
+
+        private static Customer customer = new Customer() { FirstName ="Todd",LastName="Boggins",Id=1};
+
+        [HttpGet]
+        public IActionResult Get()
+        {
+            return Ok(customer);
+        }
+
+        [HttpGet]
+        [Route("GetAll")]
+        public IActionResult GetSingle()
+        {
+            return Ok(customer);
+        }
     }
 }

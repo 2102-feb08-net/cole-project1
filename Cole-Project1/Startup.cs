@@ -38,7 +38,7 @@ namespace Cole_Project1
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            /// app.UseHttpsRedirection();
 
             app.UseRouting();
 

@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace DataAccess
 {
-    public partial class project0Context : DbContext
+    public partial class project1Context : DbContext
     {
-        public project0Context()
+        public project1Context()
         {
         }
 
-        public project0Context(DbContextOptions<project0Context> options)
+        public project1Context(DbContextOptions<project1Context> options)
             : base(options)
         {
         }

@@ -1,4 +1,6 @@
 ﻿using Cole_Project1.Models;
+using DataAccess;
+using Dependencies;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,24 +15,30 @@ namespace Cole_Project1
     public class CustomerController : ControllerBase
     {
 
-        private readonly CustomerRepository _customerService;
+        private readonly CustomerRepository _customerRepository;
 
-        public CustomerController(CustomerRepository customerService)
+        public CustomerController()
         {
-            _customerService = customerService;
+            using var disposables = new Disposables();
+
+            var context = disposables.getContext();
+
+            CustomerRepository customerrepository = new CustomerRepository(context);
+
+            this._customerRepository = customerrepository;
         }
 
         [HttpGet]
         public IActionResult GetAllCustomers()
         {
-            return Ok(_customerService.GetAllCustomers());
+            return Ok(_customerRepository.GetAllCustomers());
         }
 
         [HttpGet]
         [Route("GetAll")]
         public IActionResult GetSingle()
         {
-            return Ok();
+            return Ok(_customerRepository.GetAllCustomers());
         }
     }
 }

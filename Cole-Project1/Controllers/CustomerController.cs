@@ -13,19 +13,24 @@ namespace Cole_Project1
     public class CustomerController : ControllerBase
     {
 
-        private static Customer customer = new Customer() { FirstName ="Todd",LastName="Boggins",Id=1};
+        private readonly CustomerRepository _customerService;
+
+        public CustomerController(CustomerRepository customerService)
+        {
+            _customerService = customerService;
+        }
 
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult GetAllCustomers()
         {
-            return Ok(customer);
+            return Ok(_customerService.GetAllCustomers());
         }
 
         [HttpGet]
         [Route("GetAll")]
         public IActionResult GetSingle()
         {
-            return Ok(customer);
+            return Ok();
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Cole_Project1.Models
 {
-    public class Customer
+    public class CustomerDTO
     {
         public int Id { get; set; }
 

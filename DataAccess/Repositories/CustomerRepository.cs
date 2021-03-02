@@ -29,7 +29,26 @@ namespace DataAccess
 
         public Library.Customer GetCustomerById(int id)
         {
-            throw new NotImplementedException();
+            var result = _context.Customers.Where(x => x.Id == id).FirstOrDefault();
+
+            Library.Customer customer = new Library.Customer(result.FirstName, result.LastName, result.Id);
+
+            return customer;
+        }
+
+        public Library.Customer CreateCustomer(Library.Customer customer)
+        {
+            Customer sqlcustomer = new Customer() { 
+            FirstName= customer.FirstName,
+            LastName = customer.LastName
+            };
+
+            var newcustomer = _context.Add(sqlcustomer);
+
+            Library.Customer returncustomer = new Library.Customer(newcustomer.Entity.FirstName, newcustomer.Entity.LastName, newcustomer.Entity.Id);
+
+            return returncustomer;
+
         }
     }
 }

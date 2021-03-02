@@ -29,9 +29,15 @@ namespace Cole_Project1
         }
 
         [HttpGet]
-        public IActionResult GetAllCustomers()
+        public IActionResult GetAllCustomer()
         {
-            return Ok(_customerRepository.GetAllCustomers());
+            return Ok(_customerRepository.GetAllCustomers().FirstOrDefault());
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetCustomerById(int id)
+        {
+            return Ok(_customerRepository.GetCustomerById(id));
         }
 
         [HttpGet]
@@ -40,5 +46,12 @@ namespace Cole_Project1
         {
             return Ok(_customerRepository.GetAllCustomers());
         }
+
+        [HttpPost]
+        public IActionResult CreateCustomer(Library.Customer customer)
+        {
+            return Ok(_customerRepository.CreateCustomer(customer));
+        }
+
     }
 }

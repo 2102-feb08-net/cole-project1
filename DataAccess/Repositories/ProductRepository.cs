@@ -13,43 +13,29 @@ namespace DataAccess
         {
             _context = context;
         }
-        public List<Library.Prod> GetAllCustomers()
+        public List<Library.Product> GetAllProducts()
         {
-            var results = _context.Customers;
+            var results = _context.Products;
 
-            List<Library.Customer> customers = new List<Library.Customer>();
+            List<Library.Product> products = new List<Library.Product>();
 
             foreach (var result in results)
             {
-                customers.Add(new Library.Customer(result.FirstName, result.LastName, result.Id));
+                products.Add(new Library.Product(result.ProductName,result.Price.Value,result.Id));
             }
-
-            return customers;
+           
+            return products;
         }
 
-        public Library.Customer GetCustomerById(int id)
+        public Library.Product GetProductById(int id)
         {
-            var result = _context.Customers.Where(x => x.Id == id).FirstOrDefault();
+            var result = _context.Products.Where(x => x.Id == id).FirstOrDefault();
 
-            Library.Customer customer = new Library.Customer(result.FirstName, result.LastName, result.Id);
+            Library.Product product = new Library.Product(result.ProductName,result.Price.Value,result.Id);
 
-            return customer;
+            return product;
         }
 
-        public Library.Customer CreateCustomer(Library.Customer customer)
-        {
-            Customer sqlcustomer = new Customer()
-            {
-                FirstName = customer.FirstName,
-                LastName = customer.LastName
-            };
 
-            var newcustomer = _context.Add(sqlcustomer);
-
-            Library.Customer returncustomer = new Library.Customer(newcustomer.Entity.FirstName, newcustomer.Entity.LastName, newcustomer.Entity.Id);
-
-            return returncustomer;
-
-        }
     }
 }

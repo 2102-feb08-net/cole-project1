@@ -18,7 +18,7 @@ namespace DataAccess
 
             foreach (var result in results)
             {
-                storeLocations.Add(new Library.StoreLocation(result.City,result.State,result.Address,result.PhoneNumber,result.Id));
+                storeLocations.Add(new Library.StoreLocation(result.City, result.State, result.Address, result.PhoneNumber, result.Id));
             }
 
             return storeLocations;
@@ -28,7 +28,7 @@ namespace DataAccess
         {
             var result = _context.StoreLocations.Where(x => x.Id == id).FirstOrDefault();
 
-            Library.StoreLocation storeLocation = new Library.StoreLocation(result.City,result.State,result.Address,result.PhoneNumber);
+            Library.StoreLocation storeLocation = new Library.StoreLocation(result.City,result.State,result.Address,result.PhoneNumber,result.Id);
 
             return storeLocation;
         }

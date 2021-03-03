@@ -46,6 +46,14 @@ namespace Cole_Project1
         {
             return Ok(_customerRepository.GetAllCustomers());
         }
+        
+        [HttpGet("search/{firstName}/{lastName}")]
+
+        public IActionResult SearchCustomers(string firstName, string lastName)
+        {
+            return Ok(_customerRepository.SearchCustomers(firstName, lastName));
+        }
+
 
         [HttpPost]
         public IActionResult CreateCustomer(Library.Customer customer)

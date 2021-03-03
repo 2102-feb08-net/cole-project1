@@ -24,29 +24,32 @@
         </nav>
 
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="searchbar">
-                    <div class="input-group">
-                        <input type="text" class="form-control rounded" placeholder="First Name" aria-label="FirstName"
-                               aria-describedby="search-addon" />
+    <form id="customersearch">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="searchbar">
+                        <div class="input-group">
+                            <input type="text" placeholder="First Name" aria-label="FirstName"
+                                   aria-describedby="search-addon" name="firstName" />
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="searchbar">
-                    <div class="input-group">
-                        <input type="text" class="form-control rounded" placeholder="Last Name" aria-label="LastName"
-                               aria-describedby="search-addon" />
+                <div class="col-md-4">
+                    <div class="searchbar">
+                        <div class="input-group">
+                            <input type="text" class="form-control rounded" placeholder="Last Name" aria-label="LastName"
+                                   aria-describedby="search-addon" name="lastName" />
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <button type="button" class="btn btn-primary searchbar">Search</button>
+                <div class="col-md-4">
+                    <button class="btn btn-primary searchbar" id="searchbutton" type="submit">Search</button>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
+  
     <div>
         <div class="tableholder">
             <table class="table" id="customertable">

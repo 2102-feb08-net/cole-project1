@@ -50,5 +50,30 @@ namespace DataAccess
             return returncustomer;
 
         }
+
+        public List<Library.Customer> SearchCustomers(string firstname, string lastname)
+        {
+            ///Quick check if a search is null or whitespace, if it is, it sets the string to xxx to avoid recieving all entries back.
+
+            if (string.IsNullOrWhiteSpace(firstname))
+            {
+                firstname = "xxx";
+            }
+            if (string.IsNullOrWhiteSpace(lastname))
+            {
+                lastname = "xxx";
+            }
+
+            List<Library.Customer> customers = new List<Library.Customer>();
+
+            var results = _context.Customers.Where(x => x.FirstName.Contains(firstname) || x.LastName.Contains(lastname));
+
+            foreach (var result in results)
+            {
+                customers.Add(new Library.Customer(result.FirstName, result.LastName, result.Id));
+            }
+
+            return customers;
+        }
     }
 }

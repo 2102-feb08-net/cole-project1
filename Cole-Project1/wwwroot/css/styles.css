@@ -1,4 +1,10 @@
 ﻿
+.searchbar{
+    margin-left:50px;
+    width:200px;
+    margin-top:20px;
+}
+
 .tableholder{
     margin: 50px;
 }

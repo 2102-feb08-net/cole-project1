@@ -8,8 +8,8 @@ function loadTables() {
 
 }
 
-loadProduct()
-    .then(storelocation => {
+loadTables()
+    .then(stores => {
         for (const store of stores) {
             console.log(store);
             const row = storetable.insertRow();

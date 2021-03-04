@@ -66,7 +66,7 @@ namespace DataAccess
 
             List<Library.Customer> customers = new List<Library.Customer>();
 
-            var results = _context.Customers.Where(x => x.FirstName.Contains(firstname) || x.LastName.Contains(lastname));
+            var results = _context.Customers.Where(x => x.FirstName.Contains(firstname) && x.LastName.Contains(lastname));
 
             foreach (var result in results)
             {

@@ -25,9 +25,7 @@ customersearch.addEventListener('submit', e =>  {
     fetch(`/customer/search/${search.firstName}/${search.lastName}`)
         .then(response => response.json())
         .then(customers => {
-            if (customers) {
-                document.querySelectorAll("td").forEach(function (e) { e.remove() });
-            }
+            clearTable();
             for (const customer of customers) {
                 const row = customertable.insertRow();
                 row.innerHTML = `<td>${customer.id}</td>
@@ -44,6 +42,7 @@ fillTable();
 function fillTable() {
     loadCustomers()
         .then(customers => {
+            clearTable();
             for (const customer of customers) {
                 const row = customertable.insertRow();
                 row.innerHTML = `<td>${customer.id}</td>
@@ -54,7 +53,12 @@ function fillTable() {
 }
 
 
-
+function clearTable() {
+    document.querySelectorAll("td").forEach(function (e) {
+        console.log(e);
+        e.remove()
+    })
+}
 
 
 function loadCustomers() {

@@ -20,7 +20,7 @@ steps:
 - script: dotnet build Cole-Project1/ --configuration $(buildConfiguration)
   displayName: 'Build'
 
-- script: dotnet test /Tests/
+- script: dotnet test Tests
   displayName: 'Unit Testing'
 
 - task: NuGetCommand@2

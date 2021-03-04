@@ -31,13 +31,13 @@ namespace Cole_Project1
         [HttpGet("product/{id}")]
         public IActionResult GetCustomerById(int id)
         {
-            return Ok(_productRepository.GetProductById(id));
+            return Ok(_productRepository.GetById(id));
         }
 
         [HttpGet("products")]
         public IEnumerable<Library.Product> GetAll()
         {
-            return _productRepository.GetAllProducts().ToList();
+            return _productRepository.GetAll().ToList();
         }
 
     }

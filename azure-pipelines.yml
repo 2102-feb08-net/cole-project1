@@ -17,6 +17,12 @@ variables:
 steps:
 - task: NuGetToolInstaller@1
 
+- script: dotnet build Cole-Project1/ --configuration $(buildConfiguration)
+  displayName: 'Build'
+
+- script: dotnet test BookStore/Tests/
+  displayName: 'Unit Testing'
+
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'

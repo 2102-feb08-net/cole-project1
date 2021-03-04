@@ -55,11 +55,14 @@ namespace Cole_Project1
         }
 
 
-        [HttpPost]
-        public IActionResult CreateCustomer(Library.Customer customer)
+        [HttpPost("addnew")]
+        public void CreateCustomer(CustomerDTO customer)
         {
-            return Ok(_customerRepository.CreateCustomer(customer));
+            Library.Customer libcustomer = new Library.Customer(customer.FirstName, customer.LastName);
+
+            _customerRepository.CreateCustomer(libcustomer);
         }
+
 
     }
 }

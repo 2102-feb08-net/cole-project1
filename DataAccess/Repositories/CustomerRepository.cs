@@ -47,6 +47,8 @@ namespace DataAccess
 
             Library.Customer returncustomer = new Library.Customer(newcustomer.Entity.FirstName, newcustomer.Entity.LastName, newcustomer.Entity.Id);
 
+            _context.SaveChanges();
+
             return returncustomer;
 
         }

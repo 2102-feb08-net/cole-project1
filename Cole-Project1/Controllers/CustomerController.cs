@@ -31,20 +31,20 @@ namespace Cole_Project1
         [HttpGet]
         public IActionResult GetAllCustomer()
         {
-            return Ok(_customerRepository.GetAllCustomers().FirstOrDefault());
+            return Ok(_customerRepository.GetAll().FirstOrDefault());
         }
 
         [HttpGet("{id}")]
         public IActionResult GetCustomerById(int id)
         {
-            return Ok(_customerRepository.GetCustomerById(id));
+            return Ok(_customerRepository.GetById(id));
         }
 
         [HttpGet]
         [Route("GetAll")]
         public IActionResult GetSingle()
         {
-            return Ok(_customerRepository.GetAllCustomers());
+            return Ok(_customerRepository.GetAll());
         }
         
         [HttpGet("search/{firstName}/{lastName}")]
@@ -60,7 +60,7 @@ namespace Cole_Project1
         {
             Library.Customer libcustomer = new Library.Customer(customer.FirstName, customer.LastName);
 
-            _customerRepository.CreateCustomer(libcustomer);
+            _customerRepository.Create(libcustomer);
         }
 
 

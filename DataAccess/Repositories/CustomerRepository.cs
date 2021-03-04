@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace DataAccess
 {
-    public class CustomerRepository : ICustomerRepository
+    public class CustomerRepository : IRepository<Library.Customer>
     {
         private readonly project1Context _context;
         public CustomerRepository(project1Context context)
         {
             _context = context;
         }
-        public List<Library.Customer> GetAllCustomers()
+        public List<Library.Customer> GetAll()
         {
             var results = _context.Customers;
 
@@ -27,7 +27,7 @@ namespace DataAccess
             return customers;
         }
 
-        public Library.Customer GetCustomerById(int id)
+        public Library.Customer GetById(int id)
         {
             var result = _context.Customers.Where(x => x.Id == id).FirstOrDefault();
 
@@ -36,11 +36,12 @@ namespace DataAccess
             return customer;
         }
 
-        public Library.Customer CreateCustomer(Library.Customer customer)
+        public void Create(Library.Customer customer)
         {
-            Customer sqlcustomer = new Customer() { 
-            FirstName= customer.FirstName,
-            LastName = customer.LastName
+            Customer sqlcustomer = new Customer()
+            {
+                FirstName = customer.FirstName,
+                LastName = customer.LastName
             };
 
             var newcustomer = _context.Add(sqlcustomer);
@@ -49,9 +50,9 @@ namespace DataAccess
 
             _context.SaveChanges();
 
-            return returncustomer;
 
         }
+
 
         public List<Library.Customer> SearchCustomers(string firstname, string lastname)
         {
@@ -77,5 +78,9 @@ namespace DataAccess
 
             return customers;
         }
+
+
     }
+
+
 }

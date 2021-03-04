@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace DataAccess
 {
-    public class ProductRepository 
+    public class ProductRepository : IRepository<Library.Product>
     {
         private readonly project1Context _context;
         public ProductRepository(project1Context context)
         {
             _context = context;
         }
-        public List<Library.Product> GetAllProducts()
+        public List<Library.Product> GetAll()
         {
             var results = _context.Products;
 
@@ -27,13 +27,23 @@ namespace DataAccess
             return products;
         }
 
-        public Library.Product GetProductById(int id)
+        public Library.Product GetById(int id)
         {
             var result = _context.Products.Where(x => x.Id == id).FirstOrDefault();
 
             Library.Product product = new Library.Product(result.ProductName,result.Price.Value,result.Id);
 
             return product;
+        }
+
+        public void Create(Library.Product businessproduct)
+        {
+
+            // ID left at default 0
+            Product product = new Product() { Id = businessproduct.Id, ProductName = businessproduct.ProductName, Price = businessproduct.Price };
+
+            _context.Add(product);
+
         }
 
 

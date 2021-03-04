@@ -33,9 +33,6 @@ namespace DataAccess
             return storeLocation;
         }
 
-        public void CreateStoreLocation(Library.StoreLocation storeLocation)
-        { 
-           
-        }
+
     }
 }

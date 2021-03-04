@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 
 namespace DataAccess
 {
-    public interface ICustomerRepository
+    public interface IRepository<T>
     {
-        List<Library.Customer> GetAllCustomers();
-        Library.Customer GetCustomerById(int id);
+        public List<T> GetAll();
 
+        public T GetById(int id);
+
+        public void Create(T item);
 
 
     }

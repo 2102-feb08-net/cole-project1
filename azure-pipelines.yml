@@ -72,7 +72,7 @@ steps:
   inputs:
     command: 'publish'
     publishWebProjects: false
-    projects: 'Cole-Project1/Cole-Project1'
+    projects: 'Cole-Project1'
     zipAfterPublish: true
 
 - task: AzureRmWebAppDeployment@4

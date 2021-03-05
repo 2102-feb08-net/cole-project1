@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess
 {
-    public class CustomerRepository : IRepository<Library.Customer>
+    public class CustomerRepository : ICustomerRepository 
     {
         private readonly project1Context _context;
         public CustomerRepository(project1Context context)

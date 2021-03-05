@@ -15,16 +15,10 @@ namespace Cole_Project1
     public class CustomerController : ControllerBase
     {
 
-        private readonly CustomerRepository _customerRepository;
+        private readonly ICustomerRepository _customerRepository;
 
-        public CustomerController()
+        public CustomerController(ICustomerRepository customerrepository)
         {
-            using var disposables = new Disposables();
-
-            var context = disposables.getContext();
-
-            CustomerRepository customerrepository = new CustomerRepository(context);
-
             this._customerRepository = customerrepository;
         }
 

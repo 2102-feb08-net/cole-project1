@@ -15,17 +15,11 @@ namespace Cole_Project1
     public class StoreLocationController : ControllerBase
     {
 
-        private readonly StoreRepository _storeRepository;
+        private readonly IStoreLocationRepository _storeRepository;
 
-        public StoreLocationController()
+        public StoreLocationController(IStoreLocationRepository storeLocationRepository)
         {
-            using var disposables = new Disposables();
-
-            var context = disposables.getContext();
-
-            StoreRepository storerepository = new StoreRepository(context);
-
-            this._storeRepository = storerepository;
+            _storeRepository = storeLocationRepository;
         }
 
 

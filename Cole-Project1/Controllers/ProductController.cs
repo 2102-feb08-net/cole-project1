@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace Cole_Project1
 {
@@ -14,17 +14,11 @@ namespace Cole_Project1
     public class ProductController : ControllerBase
     {
 
-        private readonly ProductRepository _productRepository;
+        private readonly IProductRepository _productRepository;
 
-        public ProductController()
+        public ProductController(IProductRepository productRepository)
         {
-            using var disposables = new Disposables();
-
-            var context = disposables.getContext();
-
-            ProductRepository productrepo = new ProductRepository(context);
-
-            this._productRepository = productrepo;
+            _productRepository = productRepository;
         }
 
 

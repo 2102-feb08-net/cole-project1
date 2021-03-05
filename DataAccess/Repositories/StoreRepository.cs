@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using DataAccess;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace DataAccess
 {
-    public class StoreRepository 
+    public class StoreRepository : IStoreLocationRepository 
     {
         private readonly project1Context _context;
         public StoreRepository(project1Context context)

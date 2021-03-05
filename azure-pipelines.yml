@@ -17,11 +17,28 @@ variables:
 steps:
 - task: NuGetToolInstaller@1
 
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'sonarcloud-cole'
+    organization: '2102-feb08-net'
+    scannerMode: 'MSBuild'
+    projectKey: '2102-feb08-net_cole-project1'
+    projectName: 'Cole-Project1'
+
 - script: dotnet build Cole-Project1/ --configuration $(buildConfiguration)
   displayName: 'Build'
 
 - script: dotnet test Tests
   displayName: 'Unit Testing'
+
+
+- task: SonarCloudAnalyze@1
+  displayName: 'Sonar Cloud Analysis'
+
+- task: SonarCloudPublish@1
+  displayName: 'Publishing Sonar Cloud'
+  inputs:
+    pollingTimeoutSec: '300'
 
 - task: NuGetCommand@2
   inputs:

@@ -34,7 +34,7 @@ steps:
   inputs:
     command: 'test'
     arguments: '--configuration $(buildConfiguration) --collect "xplat code coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura,opencover'
-    workingDirectory: '4-devops/EmailApp'
+    workingDirectory: 'Cole-Project1'
 
 
 - task: SonarCloudAnalyze@1

@@ -46,7 +46,6 @@ namespace DataAccess
 
             var newcustomer = _context.Add(sqlcustomer);
 
-            Library.Customer returncustomer = new Library.Customer(newcustomer.Entity.FirstName, newcustomer.Entity.LastName, newcustomer.Entity.Id);
 
             _context.SaveChanges();
 

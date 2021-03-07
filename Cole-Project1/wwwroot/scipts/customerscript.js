@@ -55,7 +55,6 @@ function fillTable() {
 
 function clearTable() {
     document.querySelectorAll("td").forEach(function (e) {
-        console.log(e);
         e.remove()
     })
 }

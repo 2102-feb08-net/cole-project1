@@ -1,6 +1,5 @@
 ﻿using Cole_Project1.Models;
 using DataAccess;
-using Dependencies;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;

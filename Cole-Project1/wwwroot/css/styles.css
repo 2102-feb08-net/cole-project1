@@ -1,10 +1,29 @@
-﻿
-.searchbar{
-    margin-left:50px;
-    width:200px;
-    margin-top:50px;
+﻿.customerdetails {
+    margin-top: 50px;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+
+.customerimg {
+    width: 100%;
+    height: 100%;
+}
+
+.searchbar {
+    margin-left: 50px;
+    width: 200px;
+    margin-top: 50px;
 }
 
 .tableholder{
     margin: 50px;
+}
+
+.card{
+    margin:50px;
+}
+
+.customerdetails {
+    font-size: 5%;
 }

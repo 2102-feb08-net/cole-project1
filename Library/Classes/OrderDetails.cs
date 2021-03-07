@@ -20,6 +20,10 @@ namespace Library
 
         public string StoreAddress { get; set; }
 
+        public int NumberOfProducts { get; set; }
+
+        public decimal TotalPrice { get; set; }
+
 
 
     }

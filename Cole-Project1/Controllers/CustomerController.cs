@@ -1,6 +1,5 @@
 ﻿using Cole_Project1.Models;
 using DataAccess;
-using Dependencies;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -17,8 +16,12 @@ namespace Cole_Project1
 
         private readonly ICustomerRepository _customerRepository;
 
-        public CustomerController(ICustomerRepository customerrepository)
+        private readonly IStoreLocationRepository _storeRepository;
+
+        public CustomerController(ICustomerRepository customerrepository, IStoreLocationRepository storeLocationRepository)
         {
+            this._storeRepository = storeLocationRepository;
+
             this._customerRepository = customerrepository;
         }
 
@@ -56,6 +59,21 @@ namespace Cole_Project1
 
             _customerRepository.Create(libcustomer);
         }
+
+        [HttpGet]
+        [Route("GetOrders/{id}")]
+        public IActionResult GetOrders(int id)
+        {
+            return Ok(_storeRepository.GetOrdersByCustomerId(id));
+        }
+
+        [HttpGet]
+        [Route("GetOrderDetail/{id}")]
+        public IActionResult GetOrderDetail(int id)
+        {
+            return Ok(_storeRepository.GetOrderLinesByOrderId(id));
+        }
+
 
 
     }

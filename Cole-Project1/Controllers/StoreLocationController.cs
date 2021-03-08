@@ -44,11 +44,17 @@ namespace Cole_Project1
         }
 
         [HttpPost("processrequest")]
-        public IActionResult ProcessRequest(Library.Request request)
+        public void AddProduct(Library.Request request)
         {
+            RequestProcessor.ProcessRequest(request, _storeRepository);
+        }
 
-            return (Ok(request)); 
 
+        [HttpGet]
+        [Route("storelocation/GetOrders/{id}")]
+        public IActionResult GetOrders(int id)
+        {
+            return Ok(_storeRepository.GetOrdersByStoreId(id));
         }
     }
 }

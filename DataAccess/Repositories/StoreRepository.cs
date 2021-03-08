@@ -62,6 +62,33 @@ namespace DataAccess
 
             return orderDetails;
         }
+        public List<Library.OrderDetails> GetOrdersByStoreId(int id)
+        {
+            List<Library.OrderDetails> orderDetails = new List<Library.OrderDetails>();
+
+            var results = _context.Orders.Include(x => x.Customer).Include(x => x.StoreLocation).Include(x => x.OrderLines).ThenInclude(x => x.Product).Where(x => x.StoreLocationId == id);
+
+            foreach (var result in results)
+            {
+
+                int numberOfProducts = 0;
+
+                decimal totalPrice = 0;
+
+                foreach (var orderline in result.OrderLines)
+                {
+                    numberOfProducts += orderline.Quantity;
+
+                    totalPrice += orderline.Quantity * orderline.Product.Price.Value;
+                }
+
+                orderDetails.Add(new Library.OrderDetails { CustomerFirstName = result.Customer.FirstName, CustomerId = result.CustomerId, CustomerLastName = result.Customer.LastName, StoreCity = result.StoreLocation.City, StoreAddress = result.StoreLocation.Address, OrderId = result.Id, StoreState = result.StoreLocation.State, NumberOfProducts = numberOfProducts, TotalPrice = totalPrice });
+
+
+            }
+
+            return orderDetails;
+        }
 
         public Library.OrderDetails GetOrderDetailsById(int id)
         {
@@ -200,9 +227,9 @@ namespace DataAccess
 
         public void CompleteTransaction(Library.Request request, int storeid, int productid)
         {
-            var result = _context.OrderLines.Where(x => x.OrderId == request.OrderId && x.ProductId == productid).First();
+            var result = _context.OrderLines.Where(x => x.OrderId == request.OrderId && x.ProductId == productid).FirstOrDefault();
 
-            var storeinventory = _context.Inventories.Where(x => x.ProductId == productid && x.StoreId == storeid).First();
+            var storeinventory = _context.Inventories.Where(x => x.ProductId == productid && x.StoreId == storeid).FirstOrDefault();
 
             if (result != null)
             {

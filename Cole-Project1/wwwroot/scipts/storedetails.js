@@ -15,16 +15,17 @@ const getdetailsbutton = document.getElementById("getdetailsbutton");
 
 getdetailsbutton.addEventListener('click', GetDetails);
 
-LoadPage();
+LoadPage(1);
 
-function LoadPage() {
+function LoadPage(id) {
 
-        storageid = localStorage.getItem("currentcustomer");
+    if (localStorage.getItem("currentcustomer") != null) {
+        id = localStorage.getItem("currentcustomer");
+    }
 
-        GetOrders(storageid);
+    GetOrders(id);
 
-        CustomerDetails(storageid);
-
+    CustomerDetails(id);
 
 };
 
@@ -33,23 +34,25 @@ function UpdatePage(id) {
     GetOrders(id);
 
     CustomerDetails(id);
-}
+
+};
 
 function CustomerDetails(id) {
 
-    fetch(`/customer/${id}`)
+    fetch(`/storelocation/${id}`)
         .then(response => response.json())
-        .then(customerdetails => {
-            if (customerdetails) {
-                customerid.value = customerdetails.id;
-                customerfirst.value = customerdetails.firstName;
-                customerlast.value = customerdetails.lastName;
+        .then(storedetails => {
+            if (storedetails) {
+                storeid.value = storedetails.storeId;
+                storecity.value = storedetails.storeCity;
+                storestate.value = storedetails.storeState;
             }
 
         });
 
 
 };
+
 
 function GetOrders(id) {
 
@@ -58,10 +61,6 @@ function GetOrders(id) {
     fetch(`/customer/getorders/${id}`)
         .then(response => response.json())
         .then(orderdetails => {
-            if (!orderdetails) {
-                return;
-            }
-
             for (const order of orderdetails) {
                 const row = ordertablebody.insertRow();
                 let color = getColor(order.totalPrice);
@@ -72,7 +71,7 @@ function GetOrders(id) {
                        <td style="background-color:${color}">$${order.totalPrice}</td>`;
             }
 
-        }); 
+        });
 
 
 }

@@ -21,7 +21,7 @@ const getdetailsbutton = document.getElementById("getdetailsbutton");
 const addproductbutton = document.getElementById("addproductbutton");
 
 getdetailsbutton.addEventListener('click', LoadPage);
-addproductbutton.addEventListener('click', AddProductToOrder);
+addproductbutton.addEventListener('click', event => AddProductToOrder(event));
 
 LoadPage();
 
@@ -32,7 +32,6 @@ function LoadPage() {
     let searchidint = parseInt(searchid);
 
     if (!searchidint) {
-        alert("Customer id must be an integer.")
         return;
     }
 
@@ -108,7 +107,9 @@ function GetProductByOrderId(id) {
         });
 }
 
-function AddProductToOrder() {
+function AddProductToOrder(event) {
+
+    event.preventDefault();
 
     let productquantity = document.getElementById('productquantity').value;
     let productname = document.getElementById('storeproducts').value;
@@ -127,20 +128,24 @@ function AddProductToOrder() {
 
     };
 
-    fetch('/processrequest/', {
+    fetch('/processrequest', {
         method: 'POST',
+        body: JSON.stringify(request),
         headers: {
             'Content-Type': 'application/json'
         },
-        body: request
     }).then(response => {
         if (!response.ok) {
             throw new Error(`Network response was not ok (${response.status})`);
         }
-    });
-  
+        clearTable();
+        GetProductByOrderId(request.OrderId);
+        GetProducts(request.OrderId);
 
-    debugger;
+    }).catch(err => {
+        console.log(err);
+    });
+
 }
 
 /// Helper Methods to help select color for price column in table, and remove table data when needing to refresh.

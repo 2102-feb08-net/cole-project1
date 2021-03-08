@@ -31,11 +31,20 @@ customersearch.addEventListener('submit', e =>  {
                 row.innerHTML = `<td>${customer.id}</td>
                        <td>${customer.firstName}</td>
                        <td>${customer.lastName}</td>`;
+                row.addEventListener('click', ClickEvent);
+                debugger;
             }
 
         });
 }
 )
+
+function ClickEvent(event) {
+    console.log(event.target.id);
+    window.location.href = "customerdetails.html";
+    localStorage.setItem('currentcustomer', event.target.id);
+}
+
 
 fillTable();
 
@@ -45,11 +54,16 @@ function fillTable() {
             clearTable();
             for (const customer of customers) {
                 const row = customertable.insertRow();
-                row.innerHTML = `<td>${customer.id}</td>
+                row.innerHTML = `<td id=${customer.id}>${customer.id}</td>
                        <td>${customer.firstName}</td>
                        <td>${customer.lastName}</td>`;
+                AddClickEvent(row);
             }
         });
+}
+
+function AddClickEvent(row) {
+    row.addEventListener('click', event => ClickEvent(event));
 }
 
 

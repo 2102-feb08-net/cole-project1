@@ -44,8 +44,7 @@ namespace DataAccess
                 LastName = customer.LastName
             };
 
-            var newcustomer = _context.Add(sqlcustomer);
-
+            _context.Add(sqlcustomer);
 
             _context.SaveChanges();
 

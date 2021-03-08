@@ -20,6 +20,7 @@ namespace Library
         /// </summary>
         public decimal Price { get; private set; }
 
+        public Product() { }
         public Product(string productName, decimal price, int id = 0)
         {
 

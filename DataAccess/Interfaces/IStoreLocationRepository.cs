@@ -14,5 +14,15 @@ namespace DataAccess
 
         public List<Library.OrderLine> GetOrderLinesByOrderId(int orderid);
 
+        public Library.OrderDetails GetOrderDetailsById(int id);
+
+        public List<Library.Product> GetStoreProductsByOrderId(int id);
+
+        public Library.Product GetProductByName(string name);
+
+        public int GetQuantityByProduct(Library.Product product, int orderid);
+
+        public void CompleteTransaction(Library.Request request, int storeid, int productid);
+
     }
 }

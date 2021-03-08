@@ -14,6 +14,8 @@ namespace Library
 
         public string CustomerLastName { get; set; }
 
+        public int StoreId { get; set; }
+
         public string StoreCity { get; set; }
 
         public string StoreState { get; set; }

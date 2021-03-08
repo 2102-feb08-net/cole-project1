@@ -74,6 +74,14 @@ namespace Cole_Project1
             return Ok(_storeRepository.GetOrderLinesByOrderId(id));
         }
 
+        [HttpGet]
+        [Route("GetOrder/{id}")]
+        public IActionResult GetOrder(int id)
+        {
+            return Ok(_storeRepository.GetOrderDetailsById(id));
+        }
+
+
 
 
     }

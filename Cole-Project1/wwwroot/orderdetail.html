@@ -1,10 +1,10 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8" />  
     <title></title>
     <link href="./css/styles.css" rel="stylesheet" />
-    <script src="scipts/or.js" defer></script>
+    <script src="scipts/orderdetails.js" defer></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
@@ -18,7 +18,7 @@
                     <a class="nav-item nav-link" href="./products.html">Products</a>
                     <a class="nav-item nav-link" href="./storelocations.html">Store Locations</a>
                     <a class="nav-item nav-link" href="./customers.html">Customers</a>
-                    <a class="nav-item nav-link" href="#">Orders</a>
+                    <a class="nav-item nav-link" href="./orderdetail.html">Orders</a>
                 </div>
             </div>
         </nav>
@@ -27,15 +27,16 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="./assets/ProfilePicture.jpg" alt="Card image cap">
                     <div class="card-body">
-                        <h5 class="card-title">Customer Details</h5>
+                        <h5 class="card-title">Order Details</h5>
                         <label for="customerid">Id</label>
-                        <input type="text" class="form-control" id="customerid" placeholder="Id" readonly>
+                        <input type="text" class="form-control" id="orderid" placeholder="Id" readonly>
                         <label for="customerfirst">First Name</label>
-                        <input type="text" class="form-control" id="customerfirst" placeholder="First">
+                        <input type="text" class="form-control" id="customerfirst" placeholder="First" readonly>
                         <label for="customerlast">Last Name</label>
-                        <input type="text" class="form-control" id="customerlast" placeholder="Last">
+                        <input type="text" class="form-control" id="customerlast" placeholder="Last" readonly>
+                        <label for="orderlocation">Location</label>
+                        <input type="text" class="form-control" id="orderlocation" placeholder="Location" readonly>
                         <div class="row" style="margin-top:20px">
                             <div class="col-md-6" style="display:inline">
                                 <button class="btn btn-primary" id="getdetailsbutton">Get Details</button>
@@ -49,23 +50,59 @@
                 </div>
             </div>
             <div class="col-md-9">
-                <div>
-                    <div class="tableholder">
-                        <table class="table" id="orderdetailstable">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th scope="col">Order Id</th>
-                                    <th scope="col">City</th>
-                                    <th scope="col">State</th>
-                                    <th scope="col"># Products</th>
-                                    <th scope="col">Total Price</th>
-                                </tr>
-                            </thead>
-                            <tbody id="ordertablebody">
-                            </tbody>
-                        </table>
+                <div class="row">
+                    <div>
+                        <div class="tableholder">
+                            <table class="table" id="orderdetailstable">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">Product Id</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Price</th>
+                                        <th scope="col">Quantity</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="ordertablebody">
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
+                </div>
+                <div class="row">
+                    <div class="addproductbutton">
+                        <button style="margin-left:50px;" type="button" class="btn btn-success" data-toggle="modal" data-target="#addProduct">
+                            Add Product
+                        </button>
+                    </div>
+                </div>
 
+            </div>
+        </div>
+        <div class="modal" tabindex="-1" role="dialog" id="addProduct">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add Product to Order</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="addcustomerform" method="post">
+                            <div class="form-group">
+                                <select class="selectpicker" id="storeproducts">
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastNameInput">Product Quantity</label>
+                                <input type="text" class="form-control" id="productquantity" placeholder="Quantity" name="productname">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" id="addproductbutton" class="btn btn-success">Add to Order</button>
+                    </div>
                 </div>
             </div>
         </div>

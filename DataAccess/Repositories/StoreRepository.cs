@@ -63,7 +63,34 @@ namespace DataAccess
             return orderDetails;
         }
 
-        public Library.Order GetOrderById(int id)
+        public Library.OrderDetails GetOrderDetailsById(int id)
+        {
+            Library.OrderDetails orderDetails = new Library.OrderDetails();
+
+            var result = _context.Orders.Include(x => x.Customer).Include(x => x.StoreLocation).Include(x => x.OrderLines).ThenInclude(x => x.Product).Where(x => x.Id == id).FirstOrDefault();
+
+            if (result != null)
+            {
+                int numberOfProducts = 0;
+
+                decimal totalPrice = 0;
+
+                foreach (var orderline in result.OrderLines)
+                {
+                    numberOfProducts += orderline.Quantity;
+
+                    totalPrice += orderline.Quantity * orderline.Product.Price.Value;
+                }
+
+                return new Library.OrderDetails() { CustomerFirstName = result.Customer.FirstName, CustomerId = result.CustomerId, CustomerLastName = result.Customer.LastName, StoreCity = result.StoreLocation.City, StoreAddress = result.StoreLocation.Address, OrderId = result.Id, StoreState = result.StoreLocation.State, NumberOfProducts = numberOfProducts, TotalPrice = totalPrice, StoreId = result.StoreLocationId};
+
+            }
+
+            return orderDetails;
+
+        }
+
+            public Library.Order GetOrderById(int id)
         {
 
             Library.Order order = new Library.Order();
@@ -111,6 +138,88 @@ namespace DataAccess
 
             return orderLines;
 
+
+        }
+
+        public List<Library.Product> GetStoreProductsByOrderId(int id)
+        {
+            List<Library.Product> products = new List<Library.Product>();
+
+            var storeresult = _context.Orders.Where(x => x.Id == id).Include(x => x.StoreLocation).FirstOrDefault();
+
+            if (storeresult != null)
+            {
+                var storeproducts = _context.Inventories.Where(x => x.StoreId == storeresult.Id).Include(x => x.Product);
+
+                foreach (var product in storeproducts)
+                {
+                    products.Add(new Library.Product(product.Product.ProductName, product.Product.Price.Value, product.ProductId));
+                }
+
+                return products;
+            }
+
+            return products;
+        }
+
+        public Library.Product GetProductByName(string name)
+        {
+            Library.Product product = new Library.Product();
+
+            var productresult = (from x in _context.Products
+                           where x.ProductName == name
+                           select x).FirstOrDefault<Product>();
+
+            if (productresult != null)
+            {
+                return new Library.Product(productresult.ProductName, productresult.Price.Value, productresult.Id);
+            }
+
+            return product;
+
+        }
+
+        public int GetQuantityByProduct(Library.Product product, int storeid) {
+
+            int quantity = 0;
+
+            var results = _context.Inventories.Where(x => x.ProductId == product.Id);
+
+            if (results != null)
+            {
+                foreach (var result in results)
+                {
+                    quantity += result.Quantity;
+                }
+
+                return quantity;
+            }
+
+            return quantity;
+        }
+
+        public void CompleteTransaction(Library.Request request, int storeid, int productid)
+        {
+            var result = _context.OrderLines.Where(x => x.OrderId == request.OrderId && x.ProductId == productid).First();
+
+            var storeinventory = _context.Inventories.Where(x => x.ProductId == productid && x.StoreId == storeid).First();
+
+            if (result != null)
+            {
+                result.Quantity += request.Quantity;
+
+                storeinventory.Quantity -= request.Quantity;
+
+            }
+
+            else
+            {
+                _context.OrderLines.Add(new OrderLine() { OrderId = request.OrderId, ProductId = productid, Quantity = request.Quantity });
+
+                storeinventory.Quantity -= request.Quantity;
+            }
+
+            _context.SaveChanges(); 
 
         }
 

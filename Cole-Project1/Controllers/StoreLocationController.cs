@@ -2,10 +2,7 @@
 using DataAccess;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Library;
 
 namespace Cole_Project1
 {
@@ -34,6 +31,23 @@ namespace Cole_Project1
         {
             return Ok(_storeRepository.GetAllStores());
 
+
+        }
+
+        
+        [HttpGet("storeinventory/{id}")]
+        public IActionResult GetInventory(int id)
+        {
+            return Ok(_storeRepository.GetStoreProductsByOrderId(id));
+
+
+        }
+
+        [HttpPost("processrequest")]
+        public IActionResult ProcessRequest(Library.Request request)
+        {
+
+            return (Ok(request)); 
 
         }
     }

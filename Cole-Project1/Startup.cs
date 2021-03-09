@@ -37,6 +37,8 @@ namespace Cole_Project1
                 options.UseSqlServer(connectionstring);
             });
 
+
+
             services.AddScoped<ICustomerRepository, CustomerRepository>();
 
             services.AddScoped<IStoreLocationRepository, StoreRepository>();

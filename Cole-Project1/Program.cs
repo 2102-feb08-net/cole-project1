@@ -17,10 +17,17 @@ namespace Cole_Project1
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
+        Host.CreateDefaultBuilder(args)
+              .ConfigureLogging((hostingContext, logging) =>
+              {
+                  logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
+                  logging.AddConsole();
+                  logging.AddDebug();
+                  logging.AddEventSourceLogger();
+              })
+              .ConfigureWebHostDefaults(webBuilder =>
+              {
+                  webBuilder.UseStartup<Startup>();
+              });
     }
 }

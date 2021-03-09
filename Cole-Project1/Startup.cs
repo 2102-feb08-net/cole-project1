@@ -30,7 +30,7 @@ namespace Cole_Project1
         public void ConfigureServices(IServiceCollection services)
 
         {
-            string connectionstring = File.ReadAllText("/Revature/Sql/connectionstring.txt");
+            string connectionstring = Configuration.GetConnectionString("Project1");
 
             services.AddDbContext<project1Context>(options =>
             {

@@ -20,12 +20,30 @@ const storeproducts = document.getElementById("storeproducts");
 const getdetailsbutton = document.getElementById("getdetailsbutton");
 const addproductbutton = document.getElementById("addproductbutton");
 
-getdetailsbutton.addEventListener('click', LoadPage);
+getdetailsbutton.addEventListener('click', UpdatePage);
 addproductbutton.addEventListener('click', event => AddProductToOrder(event));
 
 LoadPage();
 
 function LoadPage() {
+
+    storageid = localStorage.getItem("currentorder");
+
+    let id = 1;
+
+    if (parseInt(storageid)) {
+        id = parseInt(storageid);
+    }
+
+    GetProducts(id);
+
+    CustomerDetails(id);
+
+    GetProductByOrderId(id);
+
+}
+
+function UpdatePage() {
 
     let searchid = document.getElementById("seachcustomerid").value;
 
@@ -65,6 +83,7 @@ function GetProducts(id) {
 
     clearTable();
 
+
     fetch(`/storeinventory/${id}`)
         .then(response => response.json())
         .then(order => {
@@ -72,6 +91,7 @@ function GetProducts(id) {
                 const option = document.createElement("option");
                 option.text = orderline.productName;
                 storeproducts.add(option);
+               
                    
             }
 
@@ -88,7 +108,7 @@ function GetDetails(id) {
         alert("Customer id must be an integer.")
         return;
     }
-    LoadPage(customeridint);
+    UpdatePage(customeridint);
 }
 
 function GetProductByOrderId(id) {

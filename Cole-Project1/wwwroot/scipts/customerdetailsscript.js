@@ -65,16 +65,29 @@ function GetOrders(id) {
             for (const order of orderdetails) {
                 const row = ordertablebody.insertRow();
                 let color = getColor(order.totalPrice);
-                row.innerHTML = `<td">${order.orderId}</td>
-                       <td>${order.storeCity}</td>
-                       <td>${order.storeState}</td>
-                       <td>${order.numberOfProducts}</td>
+                row.innerHTML = `<td id=${order.orderId}>${order.orderId}</td>
+                       <td id=${order.orderId}>${order.storeCity}</td>
+                       <td id=${order.orderId}>${order.storeState}</td>
+                       <td id=${order.orderId}>${order.numberOfProducts}</td>
                        <td style="background-color:${color}">$${order.totalPrice}</td>`;
+                AddClickEvent(row);
             }
 
         }); 
 
 
+}
+
+function ClickEvent(event) {
+    let id = event.target.id;
+    localStorage.setItem('currentorder', id);
+    window.location.href = "orderdetail.html";
+
+}
+
+
+function AddClickEvent(row) {
+    row.addEventListener('click', event => ClickEvent(event));
 }
 
 function GetDetails() {

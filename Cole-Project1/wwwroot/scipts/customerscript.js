@@ -40,9 +40,13 @@ customersearch.addEventListener('submit', e =>  {
 )
 
 function ClickEvent(event) {
-    console.log(event.target.id);
     window.location.href = "customerdetails.html";
     localStorage.setItem('currentcustomer', event.target.id);
+}
+
+
+function AddClickEvent(row) {
+    row.addEventListener('click', event => ClickEvent(event));
 }
 
 
@@ -62,9 +66,6 @@ function fillTable() {
         });
 }
 
-function AddClickEvent(row) {
-    row.addEventListener('click', event => ClickEvent(event));
-}
 
 
 function clearTable() {

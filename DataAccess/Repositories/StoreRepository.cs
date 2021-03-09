@@ -1,5 +1,6 @@
 ﻿using DataAccess;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -176,7 +177,7 @@ namespace DataAccess
 
             if (storeresult != null)
             {
-                var storeproducts = _context.Inventories.Where(x => x.StoreId == storeresult.Id).Include(x => x.Product);
+                var storeproducts = _context.Inventories.Where(x => x.StoreId == storeresult.StoreLocationId).Include(x => x.Product);
 
                 foreach (var product in storeproducts)
                 {
@@ -247,6 +248,18 @@ namespace DataAccess
             }
 
             _context.SaveChanges(); 
+
+        }
+
+        public void AddOrder(int customerid, int storeid)
+        {
+
+            Order order = new Order() { CustomerId = customerid, StoreLocationId = storeid, TimeCreated = DateTime.Now };
+
+            _context.Add(order);
+
+            _context.SaveChanges();
+
 
         }
 

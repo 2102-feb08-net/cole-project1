@@ -53,8 +53,14 @@ namespace Cole_Project1
         [HttpGet]
         [Route("storelocation/GetOrders/{id}")]
         public IActionResult GetOrders(int id)
+        { 
+                return Ok(_storeRepository.GetOrdersByStoreId(id));
+        }
+
+        [HttpPost("addorder")]
+        public void AddOrder(OrderDTO order)
         {
-            return Ok(_storeRepository.GetOrdersByStoreId(id));
+            _storeRepository.AddOrder(order.CustomerId, order.StoreId);
         }
     }
 }

@@ -3,29 +3,25 @@
 const ordertable = document.getElementById("orderdetailstable");
 const ordertablebody = document.getElementById("ordertablebody");
 
-/// Customer Information Fielda
+/// Customer Information Fields
 
-const customerid = document.getElementById("customerid");
-const customerfirst = document.getElementById("customerfirst");
-const customerlast = document.getElementById("customerlast");
+const storeid = document.getElementById("storeid");
+const storecity = document.getElementById("storecity");
+const storestate = document.getElementById("storestate");
 
 /// Elements to search
-
-const getdetailsbutton = document.getElementById("getdetailsbutton");
-
-getdetailsbutton.addEventListener('click', GetDetails);
 
 LoadPage(1);
 
 function LoadPage(id) {
 
-    if (localStorage.getItem("currentcustomer") != null) {
-        id = localStorage.getItem("currentcustomer");
+    if (localStorage.getItem("currentstore") != null) {
+        id = localStorage.getItem("currentstore");
     }
 
     GetOrders(id);
 
-    CustomerDetails(id);
+    StoreDetails(id);
 
 };
 
@@ -33,19 +29,32 @@ function UpdatePage(id) {
 
     GetOrders(id);
 
-    CustomerDetails(id);
+    StoreDetails(id);
 
 };
 
-function CustomerDetails(id) {
+function ClickEvent(event) {
+    let id = event.target.id;
+    localStorage.setItem('currentorder', id);
+    window.location.href = "orderdetail.html";
+
+}
+
+
+function AddClickEvent(row) {
+    row.addEventListener('click', event => ClickEvent(event));
+}
+
+
+function StoreDetails(id) {
 
     fetch(`/storelocation/${id}`)
         .then(response => response.json())
         .then(storedetails => {
             if (storedetails) {
-                storeid.value = storedetails.storeId;
-                storecity.value = storedetails.storeCity;
-                storestate.value = storedetails.storeState;
+                storeid.value = storedetails.id;
+                storecity.value = storedetails.city;
+                storestate.value = storedetails.state;
             }
 
         });
@@ -64,11 +73,12 @@ function GetOrders(id) {
             for (const order of orderdetails) {
                 const row = ordertablebody.insertRow();
                 let color = getColor(order.totalPrice);
-                row.innerHTML = `<td">${order.orderId}</td>
-                       <td>${order.storeCity}</td>
-                       <td>${order.storeState}</td>
+                row.innerHTML = `<td id=${order.orderId}>${order.orderId}</td>
+                       <td>${order.customerFirstName}</td>
+                       <td>${order.customerLastName}</td>
                        <td>${order.numberOfProducts}</td>
                        <td style="background-color:${color}">$${order.totalPrice}</td>`;
+                AddClickEvent(row);
             }
 
         });

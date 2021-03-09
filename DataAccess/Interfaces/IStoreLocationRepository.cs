@@ -25,5 +25,8 @@ namespace DataAccess
         public void CompleteTransaction(Library.Request request, int storeid, int productid);
 
         public List<Library.OrderDetails> GetOrdersByStoreId(int id);
+
+        public void AddOrder(int customerid, int storeid);
+
     }
 }

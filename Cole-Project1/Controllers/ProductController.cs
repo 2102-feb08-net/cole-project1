@@ -20,13 +20,20 @@ namespace Cole_Project1
             _productRepository = productRepository;
         }
 
-
+        /// <summary>
+        /// Returns a product for a given product id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("product/{id}")]
         public IActionResult GetCustomerById(int id)
         {
             return Ok(_productRepository.GetById(id));
         }
-
+        /// <summary>
+        /// Returns a list of all products
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("products")]
         public IEnumerable<Library.Product> GetAll()
         {

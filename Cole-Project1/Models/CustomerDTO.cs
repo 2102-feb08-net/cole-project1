@@ -6,14 +6,17 @@ using System.Threading.Tasks;
 
 namespace Cole_Project1.Models
 {
+    /// <summary>
+    /// Used when posting a new customer to the server
+    /// </summary>
     public class CustomerDTO
     {
         [Required]
-        [StringLength(10)]
+        [StringLength(25)]
         public string FirstName { get;set; }
 
         [Required]
-        [StringLength(10)]
+        [StringLength(25)]
         public string LastName { get;  set; }
 
     }

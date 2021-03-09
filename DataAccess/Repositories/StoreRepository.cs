@@ -26,7 +26,11 @@ namespace DataAccess
 
             return storeLocations;
         }
-
+        /// <summary>
+        /// Returns details of a store given an id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Library.StoreLocation GetStoreById(int id)
         {
             var result = _context.StoreLocations.Where(x => x.Id == id).FirstOrDefault();
@@ -35,7 +39,11 @@ namespace DataAccess
 
             return storeLocation;
         }
-
+        /// <summary>
+        /// Returns orders given a customer id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public List<Library.OrderDetails> GetOrdersByCustomerId(int id)
         {
             List<Library.OrderDetails> orderDetails = new List<Library.OrderDetails>();

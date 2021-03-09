@@ -13,6 +13,10 @@ namespace DataAccess
         {
             _context = context;
         }
+        /// <summary>
+        /// Returns all customers in database.
+        /// </summary>
+        /// <returns></returns>
         public List<Library.Customer> GetAll()
         {
             var results = _context.Customers;
@@ -26,7 +30,11 @@ namespace DataAccess
 
             return customers;
         }
-
+        /// <summary>
+        /// Returns customer given id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Library.Customer GetById(int id)
         {
             var result = _context.Customers.Where(x => x.Id == id).FirstOrDefault();
@@ -35,7 +43,10 @@ namespace DataAccess
 
             return customer;
         }
-
+        /// <summary>
+        /// Creates new customer
+        /// </summary>
+        /// <param name="customer"></param>
         public void Create(Library.Customer customer)
         {
             Customer sqlcustomer = new Customer()
@@ -50,7 +61,12 @@ namespace DataAccess
 
 
         }
-
+        /// <summary>
+        /// Searches for a customer given a first and last name
+        /// </summary>
+        /// <param name="firstname"></param>
+        /// <param name="lastname"></param>
+        /// <returns></returns>
 
         public List<Library.Customer> SearchCustomers(string firstname, string lastname)
         {

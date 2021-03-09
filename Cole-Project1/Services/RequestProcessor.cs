@@ -9,6 +9,11 @@ namespace Cole_Project1
 {
     public static class RequestProcessor
     {
+        /// <summary>
+        /// Throws errors if a given request cant be fufilled. Otherwise fufills  it
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="repository"></param>
         public static void ProcessRequest(Library.Request request, IStoreLocationRepository repository)
         {
             Library.OrderDetails orderDetails = repository.GetOrderDetailsById(request.OrderId);

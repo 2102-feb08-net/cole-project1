@@ -13,6 +13,10 @@ namespace DataAccess
         {
             _context = context;
         }
+        /// <summary>
+        /// Returns all products
+        /// </summary>
+        /// <returns></returns>
         public List<Library.Product> GetAll()
         {
             var results = _context.Products;
@@ -26,7 +30,11 @@ namespace DataAccess
            
             return products;
         }
-
+        /// <summary>
+        /// Returns a product given an id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Library.Product GetById(int id)
         {
             var result = _context.Products.Where(x => x.Id == id).FirstOrDefault();
@@ -35,7 +43,10 @@ namespace DataAccess
 
             return product;
         }
-
+        /// <summary>
+        /// Creates a new product
+        /// </summary>
+        /// <param name="businessproduct"></param>
         public void Create(Library.Product businessproduct)
         {
 

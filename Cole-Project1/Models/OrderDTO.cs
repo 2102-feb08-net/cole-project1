@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Cole_Project1
 {
+    /// <summary>
+    /// Used when adding a new order, ensures they use a positive int
+    /// </summary>
     public class OrderDTO
     {
         [Required]

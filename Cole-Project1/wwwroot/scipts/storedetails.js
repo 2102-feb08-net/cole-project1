@@ -51,11 +51,6 @@ function StoreDetails(id) {
     fetch(`/storelocation/${id}`)
         .then(response => response.json())
         .then(storedetails => {
-            if (storedetails) {
-                storeid.value = storedetails.id;
-                storecity.value = storedetails.city;
-                storestate.value = storedetails.state;
-            }
 
         });
 

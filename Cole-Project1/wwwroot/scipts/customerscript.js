@@ -32,7 +32,6 @@ customersearch.addEventListener('submit', e =>  {
                        <td>${customer.firstName}</td>
                        <td>${customer.lastName}</td>`;
                 row.addEventListener('click', ClickEvent);
-                debugger;
             }
 
         });

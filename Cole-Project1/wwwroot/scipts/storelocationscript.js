@@ -27,11 +27,13 @@ loadTables()
             console.log(store);
             const row = storetable.insertRow();
             row.innerHTML = `<td id=${store.id}>${store.id}</td>
+
                        <td>${store.city}</td>
-                       <td>${store.state}</td>
+                 <td>${store.state}</td>
                        <td>${store.address}</td>
                        <td>${store.phoneNumber}</td>`;
             row.dataset.id = store.id;
+
             AddClickEvent(row);
         }
     });

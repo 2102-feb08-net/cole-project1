@@ -27,10 +27,10 @@ loadTables()
             console.log(store);
             const row = storetable.insertRow();
             row.innerHTML = `<td id=${store.id}>${store.id}</td>
-                       <td>${store.city}</td>
-                       <td>${store.state}</td>
-                       <td>${store.address}</td>
-                       <td>${store.phoneNumber}</td>`;
+                       <td id=${store.id}>${store.city}</td>
+                       <td id=${store.id}>${store.state}</td>
+                       <td id=${store.id}>${store.address}</td>
+                       <td id=${store.id}>${store.phoneNumber}</td>`;
             AddClickEvent(row);
         }
     });

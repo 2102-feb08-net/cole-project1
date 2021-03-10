@@ -74,9 +74,9 @@ function GetOrders(id) {
                 const row = ordertablebody.insertRow();
                 let color = getColor(order.totalPrice);
                 row.innerHTML = `<td id=${order.orderId}>${order.orderId}</td>
-                       <td>${order.customerFirstName}</td>
-                       <td>${order.customerLastName}</td>
-                       <td>${order.numberOfProducts}</td>
+                       <td id=${order.orderId}>${order.customerFirstName}</td>
+                       <td id=${order.orderId}>${order.customerLastName}</td>
+                       <td id=${order.orderId}>${order.numberOfProducts}</td>
                        <td style="background-color:${color}">$${order.totalPrice}</td>`;
                 AddClickEvent(row);
             }
@@ -125,4 +125,3 @@ function getColor(value) {
 
     return "#FFFFFF";
 }
-

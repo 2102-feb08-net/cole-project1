@@ -14,7 +14,7 @@ customersearch.addEventListener('submit', e =>  {
         firstName: customersearch.elements['firstName'].value,
 
         lastName: customersearch.elements['lastName'].value,
-       
+
     };
 
     if (!search.firstName && !search.lastName) {
@@ -58,8 +58,8 @@ function fillTable() {
             for (const customer of customers) {
                 const row = customertable.insertRow();
                 row.innerHTML = `<td id=${customer.id}>${customer.id}</td>
-                       <td>${customer.firstName}</td>
-                       <td>${customer.lastName}</td>`;
+                       <td id=>${customer.firstName}</td>
+                       <td id=>${customer.lastName}</td>`;
                 AddClickEvent(row);
             }
         });

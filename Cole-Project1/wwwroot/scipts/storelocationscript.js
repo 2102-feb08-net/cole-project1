@@ -9,7 +9,7 @@ function loadTables() {
 }
 
 function ClickEvent(event) {
-    let id = event.target.id;
+    let id = event.currentTarget.dataset.id;
     localStorage.setItem('currentstore', id);
     debugger;
     window.location.href = "storedetail.html";
@@ -27,10 +27,13 @@ loadTables()
             console.log(store);
             const row = storetable.insertRow();
             row.innerHTML = `<td id=${store.id}>${store.id}</td>
+
                        <td>${store.city}</td>
-                       <td>${store.state}</td>
+                 <td>${store.state}</td>
                        <td>${store.address}</td>
                        <td>${store.phoneNumber}</td>`;
+            row.dataset.id = store.id;
+
             AddClickEvent(row);
         }
     });

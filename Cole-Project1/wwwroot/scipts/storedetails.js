@@ -52,8 +52,11 @@ function StoreDetails(id) {
         .then(response => response.json())
         .then(storedetails => {
             if (storedetails) {
+                // id
                 storeid.value = storedetails.id;
+                // city
                 storecity.value = storedetails.city;
+                // state
                 storestate.value = storedetails.state;
             }
 

@@ -5,7 +5,7 @@ easy navigation through clicking on table entries you'd like to view the details
 Bootstrap was used to help lay out the various columns, and also add easy styling to buttons throughout the website.  The backend was done using ASP.net web api.  This api uses
 Data Annotations to guarantee that information coming in from the client headed towards my repositories has been validated first to have the correct format.  
 
-#To run the app you will need to:
+# To run the app you will need to:
 
 1. Clone the repository.
 
@@ -13,7 +13,7 @@ Data Annotations to guarantee that information coming in from the client headed 
 
 3. Run ng serve.
 
-#Technologies
+# Technologies
 
 * C#
 * Entity Framework
@@ -23,7 +23,7 @@ Data Annotations to guarantee that information coming in from the client headed 
 * Microsoft Azure
 * SQL Server
 
-#Features
+# Features
 
 * Add Customers
 * Search Customers By Name

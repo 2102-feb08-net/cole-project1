@@ -7,11 +7,11 @@ Data Annotations to guarantee that information coming in from the client headed 
 
 # To run the app you will need to:
 
-1. Clone the repository.
+1. Clone the repository
 
 2. Run npm install
 
-3. Run ng serve.
+3. Run ng serve
 
 # Technologies
 

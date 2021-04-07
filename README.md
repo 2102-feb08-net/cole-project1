@@ -1,4 +1,4 @@
-#Galacticat Store Management
+# Galacticat Store Management
 
 This project consists of a fully functioning website running on azure web services that allows managers to view/create order for new or existing customers.  The site features 
 easy navigation through clicking on table entries you'd like to view the details for, and offers all required functionality from the project requirements.  For front end styling, 
